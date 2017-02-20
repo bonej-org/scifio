@@ -72,15 +72,14 @@ public class FormatServiceTest {
 			"dic", "dicom", "eps", "epsi", "fake", "fits", "fts", "gif", "ics", "ids",
 			"ima", "isq", "j2k", "j2ki", "j2kr", "java", "jp2", "jpe", "jpeg", "jpf",
 			"jpg", "mng", "mov", "msr", "nhdr", "nrrd", "obf", "pct", "pcx", "pgm",
-			"pict", "png", "ps", "raw", "tf2", "tf8", "tif", "tiff", "txt", "xml",
-			"zip" };
+			"pict", "png", "ps", "raw", "roi", "tf2", "tf8", "tif", "tiff", "txt",
+			"xml", "zip" };
 		assertArrayEquals(expectedSuffixes, suffixes);
 	}
 
 	/**
-	 * Test simultaneous format caching on multiple threads.
-	 *
-	 * NB: not annotated as a unit test due to length of execution.
+	 * Test simultaneous format caching on multiple threads. NB: not annotated as
+	 * a unit test due to length of execution.
 	 */
 //	@Test
 	public void testMultiThreaded() throws InterruptedException {
@@ -93,6 +92,7 @@ public class FormatServiceTest {
 		final int[] count = new int[1];
 
 		final Runnable runnable = new Runnable() {
+
 			@Override
 			public void run() {
 				final long time = System.currentTimeMillis();
@@ -113,7 +113,7 @@ public class FormatServiceTest {
 			}
 		};
 
-		for (int i=0; i<threads; i++) {
+		for (int i = 0; i < threads; i++) {
 			ts.run(runnable);
 		}
 
